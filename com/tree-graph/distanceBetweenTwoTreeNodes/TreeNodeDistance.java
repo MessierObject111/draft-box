@@ -29,7 +29,7 @@ public class TreeNodeDistance {
 	
 	public int distanceBetweenNodes(int[] list, int x, int y, TreeNode root) {
 		buildBST(list, root);
-		findLCA(x, y, root);
+		commonAncestor = lowestCommonAncestor(findNode(x, root), findNode(y, root), root);
 		int xDist = searchDistance(commonAncestor, findNode(x, root), 0);
 		int yDist = searchDistance(commonAncestor, findNode(y, root), 0);
 		return xDist + yDist;
@@ -48,6 +48,23 @@ public class TreeNodeDistance {
 		}
 		return;
 	}
+	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(p.val > q.val){
+            TreeNode temp = p;
+            p = q;
+            q = temp;
+        }
+        while(!(root.val > p.val && root.val < q.val)){
+            if(root.val < p.val){
+                root = root.right;
+            }else if(root.val > q.val){
+                root = root.left;
+            }else{
+                return root;
+            }
+        }
+        return root;
+    }
 	
 	private int searchDistance(TreeNode base, TreeNode target, int distance){
 		if(base == null) return -1;
