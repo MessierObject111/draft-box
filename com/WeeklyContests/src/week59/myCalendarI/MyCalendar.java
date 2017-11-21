@@ -1,5 +1,6 @@
 package week59.myCalendarI;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -12,6 +13,10 @@ public class MyCalendar {
     }
     
     public boolean book(int start, int end) {
-        if(this.booked.contains(arg0));
+    	if(booked.isEmpty()){
+    		booked.add(new HashMap<Integer, Integer>(start, end));
+    		return true;
+    	}
+        return false;
     }
 }
