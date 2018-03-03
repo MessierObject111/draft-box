@@ -1,0 +1,14 @@
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<div id="counter">
+  <button v-on:click="increase(2,$event)">
+    click me
+  </button>
+  <p id="display">
+    {{ count }}
+  </p>
+  <p v-on:mousemove="updateCoordinates">
+    Coordinates: {{ x }}/{{ y }}
+    - <span v-on:mousemove="dummy">DEAD SPOT</span>
+  </p>
+</div>
