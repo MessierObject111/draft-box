@@ -13,4 +13,12 @@
         <input type="text">
         <p>{{ value }}</p>
     </div>
+    
+    <!-- Note that the Date.now() is not a reactive component, and note the difference between computed and methods for achieving the same task: display current time. The computed will cache the result and do not update the value unless the dependent value changes; the methods will, however, be invoked and update the value whenever the page renders again. You can see the difference by clicking the add buttons.-->
+    <div>
+      {{ now }} 
+    </div>
+    <div>
+      {{ nowMethod() }}
+    </div>
 </div>
