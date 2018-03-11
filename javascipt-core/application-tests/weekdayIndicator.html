@@ -1,0 +1,36 @@
+<html>
+<head>
+  
+  <style>
+  #display {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 10em;
+    height:2.75em;
+    font: 1em arial, sans-serif;
+    color:#737477;
+    background-color: aqua;
+  }
+  </style>
+</head>
+
+<body>
+  <div id="display">
+    <div>
+      <span class="content">Today is </span>
+      <span class="content" id="day"></span>
+    </div>
+  </div>
+</body>
+
+<script>
+const dayArray = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+let dateObj = new Date();
+let dayDisplay = dateObj.getDay();
+let target = document.getElementById("day");
+target.innerHTML = dayArray[dayDisplay];
+</script>
+
+</html>
