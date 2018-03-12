@@ -1,0 +1,58 @@
+<html>
+<head>
+  <style>
+  #target {
+    width: 200px;
+    height: 100px;
+    margin: 40px;
+    background-color: tomato;
+  }
+
+  .button {
+    margin: 7px;
+    height: 2rem;
+    width: 24%;
+    font-size: 0.88rem;
+  }
+  </style>
+</head>
+
+<body>
+  <div>
+    <div id="target">
+    <button class="button">Click</button>
+    <button class="button">Click</button>
+    <button class="button">Click</button>
+  </div>
+
+  <button class="button" id="toggleMask" onclick=createMask(0.2)>Add Mask</button>
+  </div>
+
+</body>
+
+<script>
+let createMask = function (opacity){
+  let targetEle = document.getElementById("target");
+  let rect = targetEle.getBoundingClientRect();
+  let style = getComputedStyle(targetEle);
+  let mask=document.createElement("div");
+  mask.id = "mask_layer";
+  mask.style.position = 'absolute';
+  let marginLeft = parseFloat(style.marginLeft);
+  mask.style.left = (targetEle.offsetLeft - marginLeft) + "px";
+  let marginTop = parseFloat(style.marginTop);
+  mask.style.top = (targetEle.offsetTop - marginTop) + 'px';
+  mask.style.zIndex = 9999;
+  mask.style.opacity = '' + opacity;
+  mask.style.backgroundColor = '#000';
+  mask.style.width = (parseFloat(style.marginLeft) +
+        parseFloat(style.marginRight) + rect.width) + 'px';
+    mask.style.height = (parseFloat(style.marginTop) +
+        parseFloat(style.marginBottom) + rect.height) + 'px';
+
+  targetEle.parentNode.appendChild(mask);
+};
+
+</script>
+
+</html>
