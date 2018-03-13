@@ -25,9 +25,8 @@
     <button class="button">Click</button>
   </div>
 
-  <button class="button" id="toggleMask" onclick=createMask(0.2)>Add Mask</button>
+  <button class="button" id="toggleMask" onclick=toggleMask()>Toggle Mask</button>
   </div>
-
 </body>
 
 <script>
@@ -35,6 +34,7 @@ let createMask = function (opacity){
   let targetEle = document.getElementById("target");
   let rect = targetEle.getBoundingClientRect();
   let style = getComputedStyle(targetEle);
+
   let mask=document.createElement("div");
   mask.id = "mask_layer";
   mask.style.position = 'absolute';
@@ -47,11 +47,42 @@ let createMask = function (opacity){
   mask.style.backgroundColor = '#000';
   mask.style.width = (parseFloat(style.marginLeft) +
         parseFloat(style.marginRight) + rect.width) + 'px';
-    mask.style.height = (parseFloat(style.marginTop) +
+  mask.style.height = (parseFloat(style.marginTop) +
         parseFloat(style.marginBottom) + rect.height) + 'px';
 
   targetEle.parentNode.appendChild(mask);
 };
+
+let removeMask = function(maskId){
+  let targetMask = document.getElementById(maskId);
+  if(targetMask) {
+    if (targetMask.parentNode) {
+        targetMask.parentNode.removeChild(targetMask);
+    }
+  }
+};
+
+let toggleMask = function(){
+
+  let toogleNum = counter.add();
+  if(toogleNum % 2 === 1) {
+    createMask(0.2);
+  }else{
+    removeMask('mask_layer');
+  }
+}
+
+var counter = (function () {
+  var count = 0;
+  return {
+    add : function(){
+      return ++count;
+    },
+    minus : function(){
+      return --count;
+    }
+  };
+})();
 
 </script>
 
