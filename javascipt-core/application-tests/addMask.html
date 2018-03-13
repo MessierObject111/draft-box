@@ -30,20 +30,22 @@
 </body>
 
 <script>
+const OPACITY = 0.2;
+const MASK_ID = "mask_layer";
 let createMask = function (opacity){
   let targetEle = document.getElementById("target");
   let rect = targetEle.getBoundingClientRect();
   let style = getComputedStyle(targetEle);
 
   let mask=document.createElement("div");
-  mask.id = "mask_layer";
+  mask.id = MASK_ID;
   mask.style.position = 'absolute';
   let marginLeft = parseFloat(style.marginLeft);
   mask.style.left = (targetEle.offsetLeft - marginLeft) + "px";
   let marginTop = parseFloat(style.marginTop);
   mask.style.top = (targetEle.offsetTop - marginTop) + 'px';
   mask.style.zIndex = 9999;
-  mask.style.opacity = '' + opacity;
+  mask.style.opacity = '' + OPACITY;
   mask.style.backgroundColor = '#000';
   mask.style.width = (parseFloat(style.marginLeft) +
         parseFloat(style.marginRight) + rect.width) + 'px';
@@ -63,12 +65,11 @@ let removeMask = function(maskId){
 };
 
 let toggleMask = function(){
-
   let toogleNum = counter.add();
   if(toogleNum % 2 === 1) {
-    createMask(0.2);
+    createMask(OPACITY);
   }else{
-    removeMask('mask_layer');
+    removeMask(MASK_ID);
   }
 }
 
@@ -77,9 +78,6 @@ var counter = (function () {
   return {
     add : function(){
       return ++count;
-    },
-    minus : function(){
-      return --count;
     }
   };
 })();
