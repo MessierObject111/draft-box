@@ -20,12 +20,26 @@
 <body>
   <div>
     <div id="target">
-    <button class="button">Click</button>
-    <button class="button">Click</button>
-    <button class="button">Click</button>
-  </div>
+      <button class="button">Click</button>
+      <button class="button">Click</button>
+      <button class="button">Click</button>
+    </div>
 
-  <button class="button" id="toggleMask" onclick=toggleMask()>Toggle Mask</button>
+    <button class="button" id="toggleMask" onclick=toggleMask()>Toggle Mask</button>
+
+    <div >
+      <div id="left_panel">
+        <ul class="list-group">
+          <li class="list-group-item active">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis</li>
+          <li class="list-group-item">Morbi leo risus</li>
+          <li class="list-group-item">Porta ac consectetur</li>
+          <li class="list-group-item">Vestibulum at ero</li>
+        </ul>
+      </div>
+      <div id="right_panel"></div>
+    </div>
+
   </div>
 </body>
 
@@ -66,9 +80,11 @@ let removeMask = function(maskId){
 
 let toggleMask = function(){
   let toogleNum = counter.add();
-  if(toogleNum % 2 === 1) {
+  if(toogleNum % 2 === 0) {
+    console.log('add mask');
     createMask(OPACITY);
   }else{
+    console.log('remove mask');
     removeMask(MASK_ID);
   }
 }
@@ -77,7 +93,7 @@ var counter = (function () {
   var count = 0;
   return {
     add : function(){
-      return ++count;
+      return count++;
     }
   };
 })();
