@@ -16,25 +16,30 @@
 
   function deepClone(obj) {
     var _toString = Object.prototype.toString;
-    console.log(obj);
+    console.log("Outer:");
+    //console.log(obj);
 
     // null, undefined, non-object, function
     if (!obj || typeof obj !== 'object') {
+      console.log("Not an obj.");
         return obj;
     }
 
     // DOM Node
     if (obj.nodeType && 'cloneNode' in obj) {
+      console.log("DOM node.");
         return obj.cloneNode(true);
     }
 
     // Date
     if (_toString.call(obj) === '[object Date]') {
+      console.log("Date obj.");
         return new Date(obj.getTime());
     }
 
     // RegExp
     if (_toString.call(obj) === '[object RegExp]') {
+      console.log("Regex.");
         var flags = [];
         if (obj.global) { flags.push('g'); }
         if (obj.multiline) { flags.push('m'); }
@@ -43,15 +48,63 @@
         return new RegExp(obj.source, flags.join(''));
     }
 
-    var result = Array.isArray(obj) ? [] :
-        obj.constructor ? new obj.constructor() : {};
+    if(Array.isArray(obj)) {
+      console.log("Array:");
+      return [];
+    }else{
+      if(obj.constructor) {
+        console.log("Has constructor:");
+        return new obj.constructor;
+      }else{
+        console.log("Doesn't have constructor:");
+        return {};
+      }
+    }
+    //var result = Array.isArray(obj) ? [] :
+        //obj.constructor ? new obj.constructor() : {};
 
     for (var key in obj ) {
+      console.log("Set key:"+ key + " value:"+ obj[key]);
         result[key] = deepClone(obj[key]);
     }
 
     return result;
   }
+
+//Shallow copy:
+function shallowCopy(obj){
+  var newObj = new Object();
+  Object.assign(newObj, obj);
+  return newObj;
+}
+  //Test function: name, birthday, pattern, container, meow, hobbys
+function Animal() {
+  //this.info = info;
+  this.beak = null,
+  this.color = undefined,
+  this.numOfHair = NaN,
+  this.name = 'Tom',
+  this.birth = new Date(),
+  this.pattern = /qiu/gim,
+  this.container = document.body,
+  this.meow = function (){
+    alert('Meow!');
+  },
+  this.layeredObject = {
+    'layer_1_attribute_1': "lay-1-attr-1",
+    'layer_1_attribute_2': ["sub_1", "sub_2", {date: this.birth}],
+    'layer_1_attribute_3': {
+      'layer_2_attribute_1': "lay-2-attr-1",
+      'layer_2_attribute_2': null
+    }
+  },
+  this.hobbys = ['hunting', 'fishing', {food : ['Frishkies', 'IAMSO'], }, /aaa/gim, 111]
+}
+
+var original_cat = new Animal();
+var shallow_copycat = shallowCopy(original_cat);
+var deep_copycat = deepClone(original_cat);
+console.log(original_cat, shallow_copycat, deep_copycat);
 
   </script>
 </html>
