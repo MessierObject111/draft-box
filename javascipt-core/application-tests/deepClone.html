@@ -48,22 +48,23 @@
         return new RegExp(obj.source, flags.join(''));
     }
 
+    var result = Array.isArray(obj) ? [] : obj.constructor ? new obj.constructor() : {};
+    /*
+    var result;
     if(Array.isArray(obj)) {
       console.log("Array:");
-      return [];
+      result =  [];
     }else{
       if(obj.constructor) {
         console.log("Has constructor:");
-        return new obj.constructor;
+        result =  new obj.constructor;
       }else{
         console.log("Doesn't have constructor:");
-        return {};
+        result =  {};
       }
     }
-    //var result = Array.isArray(obj) ? [] :
-        //obj.constructor ? new obj.constructor() : {};
-
-    for (var key in obj ) {
+    */
+    for (var key in obj) {
       console.log("Set key:"+ key + " value:"+ obj[key]);
         result[key] = deepClone(obj[key]);
     }
