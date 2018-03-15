@@ -19,7 +19,7 @@
     console.log("Outer:");
     //console.log(obj);
 
-    // null, undefined, non-object, function
+    // Non-object(Null, Undefined, String, Number, Function)
     if (!obj || typeof obj !== 'object') {
       console.log("Not an obj.");
         return obj;
@@ -49,21 +49,7 @@
     }
 
     var result = Array.isArray(obj) ? [] : obj.constructor ? new obj.constructor() : {};
-    /*
-    var result;
-    if(Array.isArray(obj)) {
-      console.log("Array:");
-      result =  [];
-    }else{
-      if(obj.constructor) {
-        console.log("Has constructor:");
-        result =  new obj.constructor;
-      }else{
-        console.log("Doesn't have constructor:");
-        result =  {};
-      }
-    }
-    */
+
     for (var key in obj) {
       console.log("Set key:"+ key + " value:"+ obj[key]);
         result[key] = deepClone(obj[key]);
