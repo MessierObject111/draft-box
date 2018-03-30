@@ -4,46 +4,66 @@ function isBoolean(args){
 }
 
 //Function
-function isFunction(){
+function isFunction(args){
   return Object.prototype.toString.call(args) === '[object Function]';
 }
 
 //date
-function isDate(){
+function isDate(args){
   return Object.prototype.toString.call(args) === '[object Date]';
 }
 
 //Number
-function isNumber(){
+function isNumber(args){
   return Object.prototype.toString.call(args) === '[object Number]';
 }
 
 //NaN
-function isNaN(){
+function isNaN(args){
   return args !== args;
 }
 
 //Regex
-function isRegExp(){
+function isRegExp(args){
   return Object.prototype.toString.call(args) === '[object RegExp]';
 }
 
 //null
-function isNull(){
+function isNull(args){
   return Object.prototype.toString.call(args) === '[object Null]';
 }
 
 //undefined
-function isUndefined(){
+function isUndefined(args){
   return Object.prototype.toString.call(args) === '[object Undefined]';
 }
 
 //Object
-function isObject(){
+function isObject(args){
   return Object.prototype.toString.call(args) === '[object Object]';
 }
 
 //Array:
-function isArray(){
+function isArray(args){
   return Object.prototype.toString.call(args) === '[object Array]';
+}
+
+//Error
+function isError (args) {
+    return Object.prototype.toString.call(args).slice(8, -1) === 'Error';
+}
+
+//Symbol
+isSymbol (args) {
+    return Object.prototype.toString.call(args).slice(8, -1) === 'Symbol';
+}
+
+//Promise
+isPromise (args) {
+    return Object.prototype.toString.call(args).slice(8, -1) === 'Promise';
+}
+
+//Set
+isSet (args) {
+    return Object.prototype.toString.call(args).slice(8, -1) === 'Set';
 }
