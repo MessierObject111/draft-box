@@ -82,5 +82,14 @@ public class QuickSort {
        array[i] = array[j];
        array[j] = temp;
    }
-   
+
+   public static void main(String a[]){
+       QuickSort sorter = new QuickSort();
+       int[] input = {7, 3,	6,	1,	2,	9,	0,	5,	8};
+       sorter.sort(input);
+       for(int i:input){
+           System.out.print(i);
+           System.out.print(" ");
+       }
+   }
 }
