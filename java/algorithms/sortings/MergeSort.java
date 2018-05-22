@@ -17,7 +17,7 @@ public class MergeSort {
     }
   }
 
-  private void mergeParts(int[] arr, int left, int middle, int right ) {
+  private void mergeParts(int[] arr, int left, int middle, int right) {
     int i = 0; int j = 0; int k = 0;
     //When left array hasn't reached the end:
     while(i < left.length || j < right.length){
